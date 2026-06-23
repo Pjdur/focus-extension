@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Focus Shield - Keep Focused!</title>
+  <style>
+    :root {
+      /* Matched to your new Light Popup Theme */
+      --bg-color: #FFF9E5;
+      /* Soft Cream */
+      --card-bg: #FFFFFF;
+      /* Pure White */
+      --primary: #58CC02;
+      /* Focus Green */
+      --primary-dark: #46A302;
+      /* Green Shadow */
+      --text-main: #4B4B4B;
+      /* Soft Dark Grey */
+      --text-muted: #777777;
+      /* Lighter Grey */
+      --accent: #FF9600;
+      /* Orange for emphasis */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 500px;
+      width: 100%;
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 3rem 2rem;
+      /* Soft shadow instead of dark glow */
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      border: 2px solid #E5E5E5;
+      position: relative;
+      animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* SVG Placeholder Area */
+    .svg-container {
+      width: 100%;
+      height: 180px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      /* Hidden initially */
+      animation: fadeIn 1s ease-out 0.5s forwards;
+      /* Fades in after 0.5s */
+    }
+
+    .svg-placeholder {
+      width: 100%;
+      height: 100%;
+      background: #F0F0F0;
+      border-radius: 16px;
+      border: 2px dashed #CCCCCC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    /* "Stay Focused" Text Fade In */
+    h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 0.8s forwards;
+      /* Fades in after 0.8s */
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .target-domain {
+      font-size: 1.1rem;
+      color: var(--text-main);
+      font-weight: 700;
+      background: #E5FCC2;
+      /* Light Green BG */
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      display: inline-block;
+      margin-bottom: 2rem;
+      border: 2px solid var(--primary);
+      opacity: 0;
+      animation: fadeIn 1s ease-out 1.1s forwards;
+    }
+
+    .timer-container {
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 1.4s forwards;
+    }
+
+    .timer {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      /* Orange for urgency */
+      letter-spacing: -0.02em;
+    }
+
+    .timer-label {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      margin-top: 0.5rem;
+    }
+
+    .actions {
+      margin-top: 2rem;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 1.7s forwards;
+    }
+
+    .btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      font-weight: 800;
+      border-radius: 24px;
+      cursor: pointer;
+      transition: all 0.1s ease;
+      border-bottom: 5px solid var(--primary-dark);
+      /* 3D Effect */
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .btn:hover {
+      background: #61E002;
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: translateY(4px);
+      border-bottom-width: 1px;
+    }
+
+    /* Helper for your future SVGs */
+    img.custom-svg {
+      max-width: 100%;
+      height: auto;
+      max-height: 180px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- 2. Friendly Headline -->
+    <h1>Stay Focused!</h1>
+    
+    <!-- 3. The Blocked Website -->
+    <div class="target-domain" id="domain-name">website.com</div>
+
+    <!-- 4. The Timer -->
+    <div class="timer-container">
+      <div class="timer" id="timer-display">00:00</div>
+      <div class="timer-label">Time Remaining</div>
+    </div>
+
+    <!-- 5. Actions (Button + Pro Teaser) -->
+    <div class="actions">
+      <button class="btn" id="unblock-early-btn">End Session Early</button>
+
+      <!-- Optional: Keep the Pro Teaser small at the bottom -->
+      <div class="pro-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        </svg>
+        Focus Pro
+      </div>
+      <div class="pro-info-text">Pro removes this button for unbreakable focus!</div>
+    </div>
+  </div>
+
+  <script src="blocked.js"></script>
+</body>
+
+</html>

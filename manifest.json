@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Focus Shield",
+  "version": "1.0.0",
+  "description": "Block distracting websites and focus on what matters.",
+  "permissions": [
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess",
+    "storage",
+    "alarms"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [ "blocked.html" ],
+      "matches": [ "<all_urls>" ]
+    }
+  ]
+}   
