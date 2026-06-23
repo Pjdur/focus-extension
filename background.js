@@ -45,10 +45,10 @@ function unblockSite(domain) {
   chrome.storage.local.get(['blockedSites'], (result) => {
     let blockedSites = result.blockedSites || [];
     const siteIndex = blockedSites.findIndex(s => s.domain === domain);
-    
+
     if (siteIndex !== -1) {
       const site = blockedSites[siteIndex];
-      
+
       // Remove rule from Declarative Net Request
       chrome.declarativeNetRequest.updateDynamicRules({
         removeRuleIds: [site.id]
@@ -58,7 +58,7 @@ function unblockSite(domain) {
         } else {
           console.log(`Unblocked domain: ${domain}`);
         }
-        
+
         // Remove from storage list
         blockedSites.splice(siteIndex, 1);
         chrome.storage.local.set({ blockedSites: blockedSites }, () => {
@@ -83,41 +83,43 @@ function blockSite(domainInput, minutes, callback) {
   chrome.storage.local.get(['blockedSites', 'nextRuleId'], (result) => {
     let blockedSites = result.blockedSites || [];
     let nextRuleId = result.nextRuleId || 1;
-    
+
     // Check if already blocked
     const existingIndex = blockedSites.findIndex(s => s.domain === domain);
     const durationMs = minutes * 60 * 1000;
     const endTime = Date.now() + durationMs;
-    
+
     if (existingIndex !== -1) {
       // Just update endTime and reset alarm
       blockedSites[existingIndex].endTime = endTime;
       chrome.storage.local.set({ blockedSites: blockedSites }, () => {
         chrome.alarms.create(`unblock_${domain}`, { delayInMinutes: minutes });
-        chrome.runtime.sendMessage({ action: "stateUpdated" }).catch(() => {});
+        chrome.runtime.sendMessage({ action: "stateUpdated" }).catch(() => { });
         if (callback) callback({ success: true, message: `Updated focus timer for ${domain}` });
       });
       return;
     }
-    
+
     const ruleId = nextRuleId;
     nextRuleId++;
     
     const redirectUrl = chrome.runtime.getURL(`blocked.html?domain=${encodeURIComponent(domain)}`);
-    
+
     const newRule = {
       id: ruleId,
       priority: 1,
       action: {
         type: 'redirect',
+        // 1. Back to your original method!
         redirect: { url: redirectUrl }
       },
       condition: {
-        urlFilter: domain,
+        // 2. Keep the '||' anchor to prevent the infinite loop!
+        urlFilter: `||${domain}`,
         resourceTypes: ['main_frame']
       }
     };
-    
+
     chrome.declarativeNetRequest.updateDynamicRules({
       addRules: [newRule]
     }, () => {
@@ -126,23 +128,23 @@ function blockSite(domainInput, minutes, callback) {
         if (callback) callback({ success: false, error: chrome.runtime.lastError.message });
         return;
       }
-      
+
       blockedSites.push({
         domain: domain,
         id: ruleId,
         endTime: endTime
       });
-      
+
       chrome.storage.local.set({
         blockedSites: blockedSites,
         nextRuleId: nextRuleId
       }, () => {
         // Set alarm
         chrome.alarms.create(`unblock_${domain}`, { delayInMinutes: minutes });
-        
+
         // Notify of state update
-        chrome.runtime.sendMessage({ action: "stateUpdated" }).catch(() => {});
-        
+        chrome.runtime.sendMessage({ action: "stateUpdated" }).catch(() => { });
+
         if (callback) callback({ success: true, message: `Successfully blocked ${domain}` });
       });
     });
@@ -170,7 +172,7 @@ chrome.runtime.onStartup.addListener(() => {
   chrome.storage.local.get(['blockedSites'], (result) => {
     const blockedSites = result.blockedSites || [];
     const now = Date.now();
-    
+
     blockedSites.forEach(site => {
       const remainingMs = site.endTime - now;
       if (remainingMs <= 0) {

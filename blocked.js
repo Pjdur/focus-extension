@@ -3,22 +3,6 @@
 const domainNameEl = document.getElementById('domain-name');
 const timerDisplayEl = document.getElementById('timer-display');
 const unblockEarlyBtn = document.getElementById('unblock-early-btn');
-const quoteTextEl = document.getElementById('quote-text');
-const quoteAuthorEl = document.getElementById('quote-author');
-
-const quotes = [
-  { text: "Concentrate all your thoughts upon the work at hand. The sun's rays do not burn until brought to a focus.", author: "Alexander Graham Bell" },
-  { text: "Your focus determines your reality.", author: "Qui-Gon Jinn" },
-  { text: "Focus is a matter of deciding what things you're not going to do.", author: "John Carmack" },
-  { text: "It is during our darkest moments that we must focus to see the light.", author: "Aristotle" },
-  { text: "Keep your attention focused entirely on what is truly your own concern.", author: "Epictetus" },
-  { text: "Deep work is the superpower of the 21st century.", author: "Cal Newport" }
-];
-
-// Display a random quote
-const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-quoteTextEl.textContent = `"${randomQuote.text}"`;
-quoteAuthorEl.textContent = `- ${randomQuote.author}`;
 
 // Get domain from query parameter
 const urlParams = new URLSearchParams(window.location.search);
