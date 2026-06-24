@@ -1,6 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "Focus Shield",
+  "name": "Focus Lock - Block distracting websites and focus on what matters",
+  "short_name": "Focus Lock",
   "version": "1.0.0",
   "description": "Block distracting websites and focus on what matters.",
   "icons": {
