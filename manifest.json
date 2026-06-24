@@ -3,6 +3,11 @@
   "name": "Focus Shield",
   "version": "1.0.0",
   "description": "Block distracting websites and focus on what matters.",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
   "permissions": [
     "declarativeNetRequest",
     "declarativeNetRequestWithHostAccess",
@@ -20,8 +25,12 @@
   },
   "web_accessible_resources": [
     {
-      "resources": [ "blocked.html" ],
-      "matches": [ "<all_urls>" ]
+      "resources": [
+        "blocked.html"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
     }
   ]
-}   
+}
