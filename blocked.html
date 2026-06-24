@@ -3,24 +3,16 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Focus Shield - Keep Focused!</title>
+  <title>Focus Luck - Keep Focused!</title>
   <style>
     :root {
-      /* Matched to your new Light Popup Theme */
       --bg-color: #FFF9E5;
-      /* Soft Cream */
       --card-bg: #FFFFFF;
-      /* Pure White */
       --primary: #58CC02;
-      /* Focus Green */
       --primary-dark: #46A302;
-      /* Green Shadow */
       --text-main: #4B4B4B;
-      /* Soft Dark Grey */
       --text-muted: #777777;
-      /* Lighter Grey */
       --accent: #FF9600;
-      /* Orange for emphasis */
     }
 
     * {
@@ -49,7 +41,6 @@
       background: var(--card-bg);
       border-radius: 24px;
       padding: 3rem 2rem;
-      /* Soft shadow instead of dark glow */
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
       border: 2px solid #E5E5E5;
       position: relative;
@@ -68,7 +59,6 @@
       }
     }
 
-    /* SVG Placeholder Area */
     .svg-container {
       width: 100%;
       height: 180px;
@@ -77,9 +67,7 @@
       justify-content: center;
       align-items: center;
       opacity: 0;
-      /* Hidden initially */
       animation: fadeIn 1s ease-out 0.5s forwards;
-      /* Fades in after 0.5s */
     }
 
     .svg-placeholder {
@@ -96,7 +84,6 @@
       font-size: 0.9rem;
     }
 
-    /* "Stay Focused" Text Fade In */
     h1 {
       font-size: 2rem;
       font-weight: 800;
@@ -104,7 +91,6 @@
       margin-bottom: 0.5rem;
       opacity: 0;
       animation: fadeIn 1s ease-out 0.8s forwards;
-      /* Fades in after 0.8s */
     }
 
     @keyframes fadeIn {
@@ -138,7 +124,6 @@
       font-size: 3.5rem;
       font-weight: 800;
       color: var(--accent);
-      /* Orange for urgency */
       letter-spacing: -0.02em;
     }
 
@@ -168,7 +153,6 @@
       cursor: pointer;
       transition: all 0.1s ease;
       border-bottom: 5px solid var(--primary-dark);
-      /* 3D Effect */
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
@@ -183,7 +167,6 @@
       border-bottom-width: 1px;
     }
 
-    /* Helper for your future SVGs */
     img.custom-svg {
       max-width: 100%;
       height: auto;
@@ -194,33 +177,28 @@
 
 <body>
   <div class="container">
-
-    <!-- 2. Friendly Headline -->
     <h1>Stay Focused!</h1>
-    
-    <!-- 3. The Blocked Website -->
     <div class="target-domain" id="domain-name">website.com</div>
 
-    <!-- 4. The Timer -->
     <div class="timer-container">
       <div class="timer" id="timer-display">00:00</div>
       <div class="timer-label">Time Remaining</div>
     </div>
 
-    <!-- 5. Actions (Button + Pro Teaser) -->
     <div class="actions">
       <button class="btn" id="unblock-early-btn">End Session Early</button>
 
-      <!-- Optional: Keep the Pro Teaser small at the bottom -->
+      <!-- Pro will be launched soon. 
       <div class="pro-badge">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
           stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
           <path d="M7 11V7a5 5 0 0 1 10 0v4" />
         </svg>
-        Focus Pro
+        Focus Lock Pro
       </div>
       <div class="pro-info-text">Pro removes this button for unbreakable focus!</div>
+      -->
     </div>
   </div>
 
