@@ -3,7 +3,7 @@
   "name": "Focus Lock - Block distracting websites and focus on what matters",
   "short_name": "Focus Lock",
   "version": "1.0.0",
-  "description": "Block distracting websites and focus on what matters.",
+  "description": "Simple extension to block distracting websites and focus on what matters.",
   "icons": {
     "16": "icon16.png",
     "48": "icon48.png",
